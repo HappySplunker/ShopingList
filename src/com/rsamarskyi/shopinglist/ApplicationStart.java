@@ -35,11 +35,11 @@ public class ApplicationStart {
     }
     private static void addProductToList(List<Product> products){
         System.out.println();
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product title");
-        String title = sc.nextLine();
+        String title = scanner.nextLine();
         System.out.println("Enter product description");
-        String description = sc.nextLine();
+        String description = scanner.nextLine();
         Product product = new Product();
         product.setTitle(title);
         product.setDescription(description);
@@ -52,9 +52,9 @@ public class ApplicationStart {
 
     private static void removeProductFromList(List<Product> products){
         System.out.println();
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product you want to remove");
-        String title = sc.nextLine();
+        String title = scanner.nextLine();
         Optional<Product> foundProduct = products.stream()
                 .filter(p -> p.getTitle().equals(title))
                 .findFirst();
@@ -85,7 +85,23 @@ public class ApplicationStart {
     }
     private static int getUserChoice(){
         System.out.println("Enter your choice");
-        Scanner sc = new Scanner(System.in);
-        return Integer.parseInt(sc.nextLine());
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+        boolean isInteger;
+            try {
+                Integer.parseInt(userInput);
+                isInteger= true;
+            } catch (NumberFormatException e) {
+                isInteger= false;
+            }
+
+        if (isInteger) {
+
+            return Integer.parseInt(userInput);
+        }else
+        {
+            System.out.println("Wrong input");
+
+        }return 0;
     }
 }
