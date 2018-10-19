@@ -50,7 +50,7 @@ public class ApplicationStart {
 
     }
 
-    public static void removeProductFromList(List<Product> products){
+    private static void removeProductFromList(List<Product> products){
         System.out.println();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter product you want to remove");
@@ -67,7 +67,7 @@ public class ApplicationStart {
         System.out.println();
     }
 
-    public static void printProductList(List<Product> products){
+    private static void printProductList(List<Product> products){
         System.out.println();
         for(Product product : products){
             System.out.println(product.getTitle() + " [ " + product.getDescription() + " ]");
@@ -83,7 +83,7 @@ public class ApplicationStart {
         System.out.println("Press 3 to show the list");
         System.out.println("Press 4 to exit");
     }
-    public static int getUserChoice(){
+    private static int getUserChoice(){
         System.out.println("Enter your choice");
         Scanner sc = new Scanner(System.in);
         return Integer.parseInt(sc.nextLine());
