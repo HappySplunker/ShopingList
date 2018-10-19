@@ -2,6 +2,7 @@ package com.rsamarskyi.shopinglist;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class ApplicationStart {
@@ -20,7 +21,7 @@ public class ApplicationStart {
                    break;
                 }
                 case 2:{
-                    //removeProductFromList(products);
+                    removeProductFromList(products);
                     break;
                 }
                 case 3:{
@@ -47,6 +48,23 @@ public class ApplicationStart {
         System.out.println();
         //sc.close();
 
+    }
+
+    public static void removeProductFromList(List<Product> products){
+        System.out.println();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter product you want to remove");
+        String title = sc.nextLine();
+        Optional<Product> foundProduct = products.stream()
+                .filter(p -> p.getTitle().equals(title))
+                .findFirst();
+        if(foundProduct.isPresent()){
+            Product product = foundProduct.get();
+            products.remove(product);
+            System.out.println("Product " + title + " was removed");
+        }else
+            System.out.println("Can not find product with title " + title);
+        System.out.println();
     }
 
     public static void printProductList(List<Product> products){
