@@ -2,6 +2,7 @@ package com.rsamarskyi.shopinglist.db.jdbc;
 
 import com.rsamarskyi.shopinglist.db.Database;
 import com.rsamarskyi.shopinglist.domain.Product;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class DatabaseImpl
         extends JDBCRepository
         implements Database {

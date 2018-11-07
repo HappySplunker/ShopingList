@@ -1,6 +1,7 @@
 package com.rsamarskyi.shopinglist.db;
 
 import com.rsamarskyi.shopinglist.domain.Product;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;

@@ -2,7 +2,9 @@ package com.rsamarskyi.shopinglist.views;
 
 import com.rsamarskyi.shopinglist.domain.Product;
 import com.rsamarskyi.shopinglist.services.ShowAllProductsService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ShowAllProductsView {
 
     private ShowAllProductsService showAllProductsService;

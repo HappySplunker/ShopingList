@@ -1,9 +1,11 @@
 package com.rsamarskyi.shopinglist.views;
 
 import com.rsamarskyi.shopinglist.services.RemoveProductService;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class RemoveProductView {
    private RemoveProductService removeProductService;
 

@@ -2,7 +2,9 @@ package com.rsamarskyi.shopinglist.services;
 
 import com.rsamarskyi.shopinglist.db.Database;
 import com.rsamarskyi.shopinglist.domain.Product;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AddNewProductService {
 
 

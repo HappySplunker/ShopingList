@@ -1,16 +1,20 @@
 package com.rsamarskyi.shopinglist.views;
 
 import com.rsamarskyi.shopinglist.services.AddNewProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class AddNewProductView {
 
+    @Autowired
     private AddNewProductService addNewProductService;
 
-    public AddNewProductView(AddNewProductService addNewProductService) {
-        this.addNewProductService = addNewProductService;
-    }
+//    public AddNewProductView(AddNewProductService addNewProductService) {
+//        this.addNewProductService = addNewProductService;
+//    }
 
     public void action(){
         System.out.println();

@@ -1,5 +1,6 @@
 package com.rsamarskyi.shopinglist;
 
+import com.rsamarskyi.shopinglist.config.SpringConfig;
 import com.rsamarskyi.shopinglist.db.Database;
 import com.rsamarskyi.shopinglist.db.jdbc.DatabaseImpl;
 import com.rsamarskyi.shopinglist.services.AddNewProductService;
@@ -8,7 +9,8 @@ import com.rsamarskyi.shopinglist.services.ShowAllProductsService;
 import com.rsamarskyi.shopinglist.views.AddNewProductView;
 import com.rsamarskyi.shopinglist.views.RemoveProductView;
 import com.rsamarskyi.shopinglist.views.ShowAllProductsView;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
 import java.util.Scanner;
@@ -16,16 +18,19 @@ import java.util.Scanner;
 public class ApplicationStart {
     public static void main(String[] args) {
 
-        Database database = new DatabaseImpl();
+        ApplicationContext context
+                = new AnnotationConfigApplicationContext(SpringConfig.class);
 
-        AddNewProductService addNewProductService = new AddNewProductService(database);
-        RemoveProductService removeProductService = new RemoveProductService(database);
-        ShowAllProductsService showAllProductsService = new ShowAllProductsService(database);
+//        Database database = new DatabaseImpl();
+//
+//        AddNewProductService addNewProductService = new AddNewProductService(database);
+//        RemoveProductService removeProductService = new RemoveProductService(database);
+//        ShowAllProductsService showAllProductsService = new ShowAllProductsService(database);
 
 
-        AddNewProductView addNewProductView = new AddNewProductView(addNewProductService);
-        RemoveProductView removeProductView = new RemoveProductView(removeProductService);
-        ShowAllProductsView showAllProductsView = new ShowAllProductsView(showAllProductsService);
+        AddNewProductView addNewProductView = context.getBean(AddNewProductView.class);
+        RemoveProductView removeProductView = context.getBean(RemoveProductView.class);
+        ShowAllProductsView showAllProductsView = context.getBean(ShowAllProductsView.class);
 
 
         while(true){
