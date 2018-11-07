@@ -1,6 +1,4 @@
-package com.rsamarskyi.shopinglist;
-
-import java.util.Objects;
+package com.rsamarskyi.shopinglist.domain;
 
 public class Product {
     private String title;

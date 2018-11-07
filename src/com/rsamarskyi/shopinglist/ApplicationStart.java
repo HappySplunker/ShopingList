@@ -1,14 +1,33 @@
 package com.rsamarskyi.shopinglist;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import com.rsamarskyi.shopinglist.db.Database;
+import com.rsamarskyi.shopinglist.db.ListDatabase;
+import com.rsamarskyi.shopinglist.services.AddNewProductService;
+import com.rsamarskyi.shopinglist.services.RemoveProductService;
+import com.rsamarskyi.shopinglist.services.ShowAllProductsService;
+import com.rsamarskyi.shopinglist.views.AddNewProductView;
+import com.rsamarskyi.shopinglist.views.RemoveProductView;
+import com.rsamarskyi.shopinglist.views.ShowAllProductsView;
+
+
+
 import java.util.Scanner;
 
 public class ApplicationStart {
     public static void main(String[] args) {
 
-        List<Product> products = new ArrayList<>();
+        Database database = new ListDatabase();
+
+        AddNewProductService addNewProductService = new AddNewProductService(database);
+        RemoveProductService removeProductService = new RemoveProductService(database);
+        ShowAllProductsService showAllProductsService = new ShowAllProductsService(database);
+
+
+        AddNewProductView addNewProductView = new AddNewProductView(addNewProductService);
+        RemoveProductView removeProductView = new RemoveProductView(removeProductService);
+        ShowAllProductsView showAllProductsView = new ShowAllProductsView(showAllProductsService);
+
+
         while(true){
             getUserMenuInput();
             int userChoice = getUserChoice();
@@ -17,15 +36,15 @@ public class ApplicationStart {
             }
             switch(userChoice){
                 case 1:{
-                   addProductToList(products);
+                   addNewProductView.action();
                    break;
                 }
                 case 2:{
-                    removeProductFromList(products);
+                    removeProductView.action();
                     break;
                 }
                 case 3:{
-                    printProductList(products);
+                    showAllProductsView.action();
                     break;
                 }
                 default:
@@ -33,49 +52,8 @@ public class ApplicationStart {
             }
         }
     }
-    private static void addProductToList(List<Product> products){
-        System.out.println();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter product title");
-        String title = scanner.nextLine();
-        System.out.println("Enter product description");
-        String description = scanner.nextLine();
-        Product product = new Product();
-        product.setTitle(title);
-        product.setDescription(description);
-        products.add(product);
-        System.out.println("Product " + product.getTitle() + " was added to list");
-        System.out.println();
-        //sc.close();
-
-    }
-
-    private static void removeProductFromList(List<Product> products){
-        System.out.println();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter product you want to remove");
-        String title = scanner.nextLine();
-        Optional<Product> foundProduct = products.stream()
-                .filter(p -> p.getTitle().equals(title))
-                .findFirst();
-        if(foundProduct.isPresent()){
-            Product product = foundProduct.get();
-            products.remove(product);
-            System.out.println("Product " + title + " was removed");
-        }else
-            System.out.println("Can not find product with title " + title);
-        System.out.println();
-    }
-
-    private static void printProductList(List<Product> products){
-        System.out.println();
-        for(Product product : products){
-            System.out.println(product.getTitle() + " [ " + product.getDescription() + " ]");
-        }
-        System.out.println();
 
 
-    }
 
     private static void getUserMenuInput (){
         System.out.println("Press 1 to add product to the list");
