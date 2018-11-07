@@ -1,7 +1,7 @@
 package com.rsamarskyi.shopinglist;
 
 import com.rsamarskyi.shopinglist.db.Database;
-import com.rsamarskyi.shopinglist.db.ListDatabase;
+import com.rsamarskyi.shopinglist.db.jdbc.DatabaseImpl;
 import com.rsamarskyi.shopinglist.services.AddNewProductService;
 import com.rsamarskyi.shopinglist.services.RemoveProductService;
 import com.rsamarskyi.shopinglist.services.ShowAllProductsService;
@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class ApplicationStart {
     public static void main(String[] args) {
 
-        Database database = new ListDatabase();
+        Database database = new DatabaseImpl();
 
         AddNewProductService addNewProductService = new AddNewProductService(database);
         RemoveProductService removeProductService = new RemoveProductService(database);
